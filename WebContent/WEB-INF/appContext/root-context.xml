@@ -14,6 +14,7 @@
 
 
   	<aop:aspectj-autoproxy />
+
 	 <!-- Root Context: defines shared resources visible to all other web components -->
 	
 	<context:annotation-config/>	
@@ -50,10 +51,9 @@
 		<property name="sqlMapClient" ref="sqlMapClient"/> 
 	</bean>
 
-	<bean class="com.pji.comment.CommentAspect"/>
-
+	<bean id="chronometryImpl" class="com.pji.util.ChronometryImpl"/>
 
 	
 	<context:component-scan base-package="com.pji." />	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 </beans>

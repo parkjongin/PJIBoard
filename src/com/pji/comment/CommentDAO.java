@@ -26,7 +26,7 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 		return articleList;
 	}
 	
-	public void updateArticle(Article article){zz
+	public void updateArticle(Article article){
 		this.getSqlMapClientTemplate().update("ArticleDAO.updateArticle", article);
 	}
 	
@@ -35,12 +35,9 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 	public void insertComment(Comment comment){
 		try{
 			this.getSqlMapClientTemplate().insert("CommentDAO.insertCommentGroup", comment);
-			System.out.println("insertCommentGroup");
 			Integer groupid = (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getRecentCommentGroupID");
-			System.out.println("get GroupID");
 			comment.setCommentGroupId(groupid);
 			this.getSqlMapClientTemplate().insert("CommentDAO.insertComment", comment);
-			System.out.println("insert Comment");
 		}catch(Exception e){
 			System.out.println("insert Comment error");
 			throw e;
@@ -56,12 +53,9 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public void insertReply(Comment comment){
 		try{
-			System.out.println("comment GroupID : " + comment.getCommentGroupId());
 			Integer maxseq = (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getMaxSeq", comment);
-			System.out.println("getSequence");
 			comment.setSeq(maxseq+1);
 			this.getSqlMapClientTemplate().insert("CommentDAO.insertComment", comment);
-			System.out.println("insert Reply");
 		}catch(Exception e){
 			System.out.println("insert Reply error");
 			throw e;
