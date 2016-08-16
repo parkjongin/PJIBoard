@@ -26,7 +26,7 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 		return articleList;
 	}
 	
-	public void updateArticle(Article article){dzzzzsdf
+	public void updateArticle(Article article){zz
 		this.getSqlMapClientTemplate().update("ArticleDAO.updateArticle", article);
 	}
 	
