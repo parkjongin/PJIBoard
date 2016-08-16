@@ -26,7 +26,7 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 		return articleList;
 	}
 	
-	public void updateArticle(Article article){
+	public void updateArticle(Article article){dzzzz
 		this.getSqlMapClientTemplate().update("ArticleDAO.updateArticle", article);
 	}
 	
@@ -52,7 +52,7 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 		return commentList;
 		
 	}
-	
+	//
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public void insertReply(Comment comment){
 		try{
