@@ -30,7 +30,7 @@
 	    <property name="password" value="root"/>
 	</bean>
 	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-	    <property name="configLocation" value="/WEB-INF/ibatis/sqlMapConfig.xml"/>
+	    <property name="configLocation" value="/WEB-INF/ibatis/config/sqlMapConfig.xml"/>
 	    <property name="dataSource" ref="dataSource"/>
 	</bean>
 	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">

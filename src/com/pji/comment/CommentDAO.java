@@ -31,11 +31,20 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 	}
 	
 	*/
+	
+	public void insertCommentGroup(Comment comment){
+		this.getSqlMapClientTemplate().insert("CommentDAO.insertCommentGroup", comment);
+	}
+	
+	public int getRecentCommentGroupID(){
+		return (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getRecentCommentGroupID");
+	}
+	
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public void insertComment(Comment comment){
 		try{
-			this.getSqlMapClientTemplate().insert("CommentDAO.insertCommentGroup", comment);
-			Integer groupid = (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getRecentCommentGroupID");
+			insertCommentGroup(comment);
+			Integer groupid = getRecentCommentGroupID();
 			comment.setCommentGroupId(groupid);
 			this.getSqlMapClientTemplate().insert("CommentDAO.insertComment", comment);
 		}catch(Exception e){
@@ -50,10 +59,14 @@ public class CommentDAO extends SqlMapClientDaoSupport{
 		
 	}
 	//
+	
+	public int getMaxSequence(Comment comment){
+		return (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getMaxSeq", comment);
+	}
 	@Transactional(propagation=Propagation.REQUIRED, rollbackFor=Exception.class)
 	public void insertReply(Comment comment){
 		try{
-			Integer maxseq = (Integer) this.getSqlMapClientTemplate().queryForObject("CommentDAO.getMaxSeq", comment);
+			Integer maxseq = getMaxSequence(comment);
 			comment.setSeq(maxseq+1);
 			this.getSqlMapClientTemplate().insert("CommentDAO.insertComment", comment);
 		}catch(Exception e){

@@ -39,8 +39,6 @@ public class RssFeedThread extends Thread{
 			for(int i=0; i<articleList.size(); i++){
 				article = new Article();
 				
-				System.out.println("title : " + articleList.get(i).getTitle());
-				
 				article.setTitle(articleList.get(i).getTitle());
 				article.setDescription(articleList.get(i).getDescription());
 				article.setLink(articleList.get(i).getLink());

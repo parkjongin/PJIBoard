@@ -6,6 +6,6 @@
 <sqlMapConfig>
  	<settings enhancementEnabled="true" maxTransactions="5"
         maxRequests="32" maxSessions="10" useStatementNamespaces="true"/>
-    <sqlMap resource="sqlMap.xml"/>
-    <sqlMap resource="sqlMapForComment.xml"/>
+    <sqlMap resource="./app/sqlMap.xml"/>
+    <sqlMap resource="./app/sqlMapForComment.xml"/>
 </sqlMapConfig>

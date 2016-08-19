@@ -30,11 +30,8 @@ public class ArticleParser {
             Elements rows = doc.select("div.source a");
             
             
-            System.out.println(rows);
             this.author = rows.get(0).text();
             
-       
-            System.out.println(rows.get(0).text());
             rows = doc.select("div.group");
             
             for(int i=0; i<rows.size(); i++){
